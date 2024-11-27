@@ -11,12 +11,12 @@ import {
 } from '@/app/ui/skeletons';
 
 export default async function Page() {
-  const {
-    totalPaidInvoices,
-    totalPendingInvoices,
-    numberOfCustomers,
-    numberOfInvoices,
-  } = await fetchCardData();
+  // const {
+  //   totalPaidInvoices,
+  //   totalPendingInvoices,
+  //   numberOfCustomers,
+  //   numberOfInvoices,
+  // } = await fetchCardData();
   return (
     <main>
       <h1 className={`${lusitana.className} mb-4 text-xl md:text-2xl`}>
