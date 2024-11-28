@@ -120,7 +120,7 @@ function PaginationArrow({
       ) : (
         <ArrowRightIcon className='w-4' />
       ),
-    []
+    [direction]
   );
 
   return isDisabled ? (
