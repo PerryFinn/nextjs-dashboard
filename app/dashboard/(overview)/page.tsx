@@ -8,6 +8,12 @@ import {
   LatestInvoicesSkeleton,
   RevenueChartSkeleton,
 } from '@/app/ui/skeletons';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: '看板',
+  description: 'Acme 看板',
+};
 
 export default async function Page() {
   return (

@@ -1,5 +1,11 @@
 import AcmeLogo from '@/app/ui/acme-logo';
 import LoginForm from '@/app/ui/login-form';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: '登录',
+  description: '登录到Acme的账户',
+};
 
 export default function LoginPage() {
   return (
