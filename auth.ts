@@ -30,14 +30,24 @@ export const { auth, signIn, signOut } = NextAuth({
 
         if (parsedCredentials.success) {
           const { email, password } = parsedCredentials.data;
-          const user = await getUser(email);
-          if (!user) return null;
-          const passwordsMatch = await bcrypt.compare(password, user.password);
-          if (passwordsMatch) {
-            return user;
+
+          const body = JSON.stringify({ username: email, password });
+          const result = await fetch('http://localhost:12306/v1/user/login', {
+            method: 'POST',
+            body,
+            headers: { 'Content-Type': 'application/json' },
+          });
+          const data = await result.json();
+          const isMatch = data.success;
+          if (isMatch) {
+            return {
+              id: data.data.id,
+              name: data.data.username,
+            };
+          } else {
+            console.log(`无效的凭证 Invalid credentials ${data.message}`);
+            return null;
           }
-          console.log('无效的凭证 Invalid credentials');
-          return null;
         }
 
         return null;
