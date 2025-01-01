@@ -24,7 +24,7 @@ export const { auth, signIn, signOut } = NextAuth({
         const parsedCredentials = z
           .object({
             email: z.string().email(),
-            password: z.string().min(6, '密码长度不能小于 6 位'),
+            password: z.string().min(7, '密码长度不能小于 7 位'),
           })
           .safeParse(credentials);
 
@@ -38,14 +38,14 @@ export const { auth, signIn, signOut } = NextAuth({
             headers: { 'Content-Type': 'application/json' },
           });
           const data = await result.json();
-          const isMatch = data.success;
-          if (isMatch) {
+          const isSuccess = data.success;
+          if (isSuccess) {
             return {
               id: data.data.id,
               name: data.data.username,
             };
           } else {
-            console.log(`无效的凭证 Invalid credentials ${data.message}`);
+            console.error(`无效的凭证 Invalid credentials ${data.message}`);
             return null;
           }
         }

@@ -6,9 +6,10 @@ import {
   ArrowRightIcon,
   ExclamationCircleIcon,
 } from '@heroicons/react/20/solid';
-import { Button } from './button';
+// import { Button } from './button';
 import { useActionState } from 'react';
 import { authenticate } from '../lib/actions';
+import { Button } from '@nextui-org/button';
 
 export default function LoginForm() {
   const [errorMessage, formAction, isPending] = useActionState(
@@ -63,7 +64,7 @@ export default function LoginForm() {
             </div>
           </div>
         </div>
-        <Button className='mt-4 w-full' aria-disabled={isPending}>
+        <Button type='submit' className='mt-4 w-full' aria-disabled={isPending}>
           Log in <ArrowRightIcon className='ml-auto h-5 w-5 text-gray-50' />
         </Button>
         <div className='flex h-8 items-end space-x-1'>
