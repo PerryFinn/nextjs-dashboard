@@ -119,3 +119,48 @@ export async function authenticate(
     throw error;
   }
 }
+
+export async function register(
+  prevState: string | undefined,
+  formData: FormData
+) {
+  try {
+    const parsedData = z
+      .object({
+        username: z.string().email(),
+        password: z
+          .string()
+          .min(7, '密码长度不能小于 7 位')
+          .max(10, '密码长度不能大于 10 位'),
+      })
+      .safeParse(Object.fromEntries(formData));
+    if (!parsedData.success) {
+      const errorMsg =
+        parsedData.error.errors?.map((e) => e.message)?.join(' ') ?? '未知错误';
+      return errorMsg;
+    }
+
+    const body = JSON.stringify(parsedData.data);
+
+    const resp = await fetch('http://localhost:12306/v1/user/register', {
+      method: 'POST',
+      body,
+      headers: { 'Content-Type': 'application/json' },
+    });
+    const result = await resp.json();
+    if (!result.success) {
+      return result.message;
+    }
+    redirect('/login');
+  } catch (error) {
+    if (error instanceof AuthError) {
+      switch (error.type) {
+        case 'CredentialsSignin':
+          return 'Invalid credentials.';
+        default:
+          return 'Something went wrong.';
+      }
+    }
+    throw error;
+  }
+}

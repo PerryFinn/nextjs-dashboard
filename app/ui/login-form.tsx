@@ -6,17 +6,22 @@ import {
   ArrowRightIcon,
   ExclamationCircleIcon,
 } from '@heroicons/react/20/solid';
-// import { Button } from './button';
-import { useActionState } from 'react';
+import { useActionState, useEffect } from 'react';
 import { authenticate } from '../lib/actions';
 import { Button } from '@nextui-org/button';
+import { Link } from '@nextui-org/react';
+import { ToastContainer, toast } from 'react-toastify';
 
 export default function LoginForm() {
   const [errorMessage, formAction, isPending] = useActionState(
     authenticate,
     void 0
   );
-
+  useEffect(() => {
+    if (errorMessage) {
+      toast.error(errorMessage);
+    }
+  }, [errorMessage]);
   return (
     <form action={formAction} className='space-y-3'>
       <div className='flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8'>
@@ -67,6 +72,12 @@ export default function LoginForm() {
         <Button type='submit' className='mt-4 w-full' aria-disabled={isPending}>
           Log in <ArrowRightIcon className='ml-auto h-5 w-5 text-gray-50' />
         </Button>
+        <Link href='/register'>
+          <Button className='mt-4 w-full'>
+            还没账号？去注册
+            <ArrowRightIcon className='ml-auto h-5 w-5 text-gray-50' />
+          </Button>
+        </Link>
         <div className='flex h-8 items-end space-x-1'>
           {/* Add form errors here */}
           {errorMessage && (
@@ -77,6 +88,7 @@ export default function LoginForm() {
           )}
         </div>
       </div>
+      <ToastContainer />
     </form>
   );
 }

@@ -2,43 +2,26 @@
 
 import React, { FormEventHandler } from 'react';
 import { Form, Input, Button } from '@nextui-org/react';
+import AcmeLogo from '../ui/acme-logo';
+import RegisterForm from '../ui/register-form';
+import { lusitana } from '../ui/fonts';
 
-const Register = () => {
-  const [submitted, setSubmitted] = React.useState(null);
-
-  const onSubmit: FormEventHandler<HTMLFormElement> = (e) => {
-    e.preventDefault();
-
-    const data = Object.fromEntries(new FormData(e.currentTarget));
-
-    setSubmitted(data);
-  };
-
+const RegisterPage = () => {
   return (
-    <Form
-      className='w-full max-w-xs'
-      validationBehavior='native'
-      onSubmit={onSubmit}
-    >
-      <Input
-        isRequired
-        errorMessage='Please enter a valid email'
-        label='Email'
-        labelPlacement='outside'
-        name='email'
-        placeholder='Enter your email'
-        type='email'
-      />
-      <Button type='submit' variant='bordered'>
-        Submit
-      </Button>
-      {submitted && (
-        <div className='text-small text-default-500'>
-          You submitted: <code>{JSON.stringify(submitted)}</code>
+    <main className='flex items-center justify-center md:h-screen'>
+      <div className='relative mx-auto flex w-full max-w-[400px] flex-col space-y-2.5 p-4 md:-mt-32 gap-4'>
+        <div className='flex h-20 w-full items-end rounded-lg bg-blue-500 p-3 md:h-36'>
+          <div className='w-32 text-white md:w-36'>
+            <AcmeLogo />
+          </div>
         </div>
-      )}
-    </Form>
+        <h1 className={`${lusitana.className} mb-3 text-2xl`}>
+          Please Sign up to continue.
+        </h1>
+        <RegisterForm />
+      </div>
+    </main>
   );
 };
 
-export default Register;
+export default RegisterPage;
