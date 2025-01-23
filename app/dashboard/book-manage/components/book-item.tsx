@@ -15,18 +15,26 @@ import {
   ArrowPathIcon,
 } from '@heroicons/react/24/outline';
 
-function BookItem({
-  id,
-  name,
-  author,
-  desc,
-  cover,
-}: {
+export type Book = {
   id: string;
   name: string;
   author: string;
   desc: string;
   cover: string;
+};
+
+function BookItem({
+  name,
+  author,
+  desc,
+  cover,
+  onEdit,
+}: {
+  name: string;
+  author: string;
+  desc: string;
+  cover: string;
+  onEdit?: () => void;
 }) {
   return (
     <Card isFooterBlurred className='border-none' radius='lg'>
@@ -67,6 +75,7 @@ function BookItem({
           radius='sm'
           size='sm'
           variant='flat'
+          onPress={onEdit}
         >
           <ArrowPathIcon className='size-5' title='更新' />
         </Button>

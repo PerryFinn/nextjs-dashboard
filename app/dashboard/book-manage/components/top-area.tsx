@@ -11,13 +11,14 @@ import {
   ModalFooter,
   useDisclosure,
 } from '@nextui-org/react';
-import React, { useState } from 'react';
+import React, { FormEventHandler, useState } from 'react';
+import AddBookForm from './add-book-form';
 
 function TopArea() {
   const [errors, setErrors] = useState({});
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
-  const onSubmit = (e) => {
+  const onSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
 
     const data = Object.fromEntries(new FormData(e.currentTarget));
@@ -39,7 +40,7 @@ function TopArea() {
         validationErrors={errors}
         onSubmit={onSubmit}
       >
-        <Input label='search book' name='book' size='sm' />
+        <Input label='book name' name='book' size='sm' />
         <Button type='submit' variant='flat' size='lg'>
           Search
         </Button>
@@ -49,41 +50,7 @@ function TopArea() {
       </Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
-          {(onClose) => (
-            <>
-              <ModalHeader className='flex flex-col gap-1'>
-                Modal Title
-              </ModalHeader>
-              <ModalBody>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Nullam pulvinar risus non risus hendrerit venenatis.
-                  Pellentesque sit amet hendrerit risus, sed porttitor quam.
-                </p>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Nullam pulvinar risus non risus hendrerit venenatis.
-                  Pellentesque sit amet hendrerit risus, sed porttitor quam.
-                </p>
-                <p>
-                  Magna exercitation reprehenderit magna aute tempor cupidatat
-                  consequat elit dolor adipisicing. Mollit dolor eiusmod sunt ex
-                  incididunt cillum quis. Velit duis sit officia eiusmod Lorem
-                  aliqua enim laboris do dolor eiusmod. Et mollit incididunt
-                  nisi consectetur esse laborum eiusmod pariatur proident Lorem
-                  eiusmod et. Culpa deserunt nostrud ad veniam.
-                </p>
-              </ModalBody>
-              <ModalFooter>
-                <Button color='danger' variant='light' onPress={onClose}>
-                  Close
-                </Button>
-                <Button color='primary' onPress={onClose}>
-                  Action
-                </Button>
-              </ModalFooter>
-            </>
-          )}
+          {(onClose) => <AddBookForm onClose={onClose} />}
         </ModalContent>
       </Modal>
     </div>
