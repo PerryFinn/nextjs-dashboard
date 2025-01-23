@@ -1,7 +1,7 @@
 'use client';
 
 import React, { FormEventHandler } from 'react';
-import { Form, Input, Button } from '@nextui-org/react';
+import { Form, Input, Button } from "@heroui/react";
 import AcmeLogo from '../ui/acme-logo';
 import RegisterForm from '../ui/register-form';
 import { lusitana } from '../ui/fonts';

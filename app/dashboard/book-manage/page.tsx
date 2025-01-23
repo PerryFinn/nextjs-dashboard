@@ -1,5 +1,5 @@
 'use client';
-import { Modal, ModalContent, useDisclosure } from '@nextui-org/react';
+import { Modal, ModalContent, useDisclosure } from "@heroui/react";
 import BookItem, { Book } from './components/book-item';
 import EditBookForm from './components/edit-book-form';
 import { useEffect, useState } from 'react';

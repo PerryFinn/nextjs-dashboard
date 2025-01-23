@@ -6,8 +6,8 @@ import {
 } from '@heroicons/react/20/solid';
 import { useActionState, useState } from 'react';
 import { register } from '../lib/actions';
-import { Button } from '@nextui-org/button';
-import { Form, Input } from '@nextui-org/react';
+import { Button } from "@heroui/button";
+import { Form, Input } from "@heroui/react";
 import Link from 'next/link';
 
 export default function RegisterForm() {

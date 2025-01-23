@@ -7,7 +7,7 @@ import {
   ModalFooter,
   ModalHeader,
   Textarea,
-} from '@nextui-org/react';
+} from "@heroui/react";
 import { FormEventHandler, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { Book } from './book-item';

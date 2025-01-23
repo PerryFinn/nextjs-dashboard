@@ -7,7 +7,7 @@ import {
   CardHeader,
   Badge,
   Chip,
-} from '@nextui-org/react';
+} from "@heroui/react";
 import React from 'react';
 import {
   TrashIcon,

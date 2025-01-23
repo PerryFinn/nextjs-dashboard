@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from '@nextui-org/button';
+import { Button } from "@heroui/button";
 import {
   Form,
   Input,
@@ -10,7 +10,7 @@ import {
   ModalBody,
   ModalFooter,
   useDisclosure,
-} from '@nextui-org/react';
+} from "@heroui/react";
 import React, { FormEventHandler, useState } from 'react';
 import AddBookForm from './add-book-form';
 

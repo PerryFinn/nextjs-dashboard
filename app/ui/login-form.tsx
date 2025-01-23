@@ -8,8 +8,8 @@ import {
 } from '@heroicons/react/20/solid';
 import { useActionState, useEffect } from 'react';
 import { authenticate } from '../lib/actions';
-import { Button } from '@nextui-org/button';
-import { Link } from '@nextui-org/react';
+import { Button } from "@heroui/button";
+import { Link } from "@heroui/react";
 import { ToastContainer, toast } from 'react-toastify';
 
 export default function LoginForm() {

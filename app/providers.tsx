@@ -1,6 +1,6 @@
 'use client';
 
-import { NextUIProvider } from '@nextui-org/react';
+import { HeroUIProvider } from "@heroui/react";
 import { useRouter } from 'next/navigation';
 
 export interface ProvidersProps {
@@ -10,5 +10,5 @@ export interface ProvidersProps {
 export function Providers({ children }: ProvidersProps) {
   const router = useRouter();
 
-  return <NextUIProvider navigate={router.push}>{children}</NextUIProvider>;
+  return <HeroUIProvider navigate={router.push}>{children}</HeroUIProvider>;
 }

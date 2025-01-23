@@ -7,7 +7,7 @@ import {
   ModalFooter,
   ModalHeader,
   Textarea,
-} from '@nextui-org/react';
+} from "@heroui/react";
 import { FormEventHandler, useState } from 'react';
 import { toast } from 'react-toastify';
 
