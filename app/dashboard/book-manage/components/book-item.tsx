@@ -7,7 +7,7 @@ import {
   CardHeader,
   Badge,
   Chip,
-} from "@heroui/react";
+} from '@heroui/react';
 import React from 'react';
 import {
   TrashIcon,
@@ -29,12 +29,14 @@ function BookItem({
   desc,
   cover,
   onEdit,
+  onDelete,
 }: {
   name: string;
   author: string;
   desc: string;
   cover: string;
   onEdit?: () => void;
+  onDelete?: () => void;
 }) {
   return (
     <Card isFooterBlurred className='border-none' radius='lg'>
@@ -85,6 +87,7 @@ function BookItem({
           radius='sm'
           size='sm'
           variant='flat'
+          onPress={onDelete}
         >
           <TrashIcon className='size-5' title='删除' />
         </Button>

@@ -7,12 +7,13 @@ import {
   ModalFooter,
   ModalHeader,
   Textarea,
-} from "@heroui/react";
+} from '@heroui/react';
 import { FormEventHandler, useState } from 'react';
 import { toast } from 'react-toastify';
 
 export type IProps = {
   onClose: () => void;
+  onAdd?: () => void;
 };
 
 const uploadFile = async (file: File) => {
@@ -29,7 +30,7 @@ const uploadFile = async (file: File) => {
 };
 
 function AddBookForm(props: IProps) {
-  const { onClose } = props;
+  const { onClose, onAdd } = props;
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
@@ -40,6 +41,8 @@ function AddBookForm(props: IProps) {
       let cover = data.cover as File;
       if (cover?.size > 0) {
         data.cover = await uploadFile(cover);
+      } else {
+        data.cover = '';
       }
       console.log(`submit`, data);
       const resp = await fetch('http://localhost:12306/v1/book', {
@@ -49,6 +52,7 @@ function AddBookForm(props: IProps) {
       });
       const result = await resp.json();
       if (!result.success) throw new Error(result.message);
+      onAdd?.();
       onClose();
     } catch (error: any) {
       toast.error(error?.message ?? '添加书籍失败');
